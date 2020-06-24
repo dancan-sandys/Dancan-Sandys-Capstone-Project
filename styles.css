@@ -1,0 +1,164 @@
+
+
+#pageone{position: absolute;
+    top: 0px;    
+    right: 0%;
+    bottom: 0px;
+    left: 0%;
+    height:100%;
+    width:100%;      
+    }
+nav>ul{ display:flex;
+      flex-direction: row;  
+      justify-content: space-around;
+      background-color:#1A1249;
+      list-style: none;
+      height: 150px;  
+      width: 100%;
+      align-items: center;
+      position: fixed;
+    }
+nav>ul>li{ color:#043BFF;
+           font-family:roboto;
+           font-size:48px;
+           line-height:56px ;
+
+}
+#name{position: absolute;
+      top:20%;
+      color:#030D43;
+      font-size: 144px;
+    
+     }
+#taglines{
+    position:absolute;
+    left:30%;
+    top:50%;    
+    align-items: center;
+    text-align: center;
+    color:#02FFE1;
+    font-family: Redressed;
+    font-size: 64px;
+    line-height: 75px;
+    letter-spacing: 0.025em;
+}
+#create{
+       position: absolute;
+       bottom:0;
+       right: 5%;
+       font-family: roboto;
+       font-size: 24px;
+       line-height: 28px;
+       display: flex;
+       align-items: center;
+       text-align: center;
+       color: #A1FE0A;
+       background-color:  #571818;
+       border-radius: 20px;
+       padding: 10px;
+
+       
+
+       
+
+}
+#pagetwo{position: absolute;
+         top: 1250px;
+         background-color: #02FFE1;
+         height: 100%;
+         width:100%;
+}
+
+#pagetwomain{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;   
+              align-items: center;
+
+}
+/*
+#clothes{
+    position: absolute;
+    width: 463px;
+    height: 349px;
+    left: -4px;
+    top: 172px;
+
+    
+          
+}
+
+#grocery{
+    position: absolute;
+    width: 452px;
+    height: 358px;
+    left: 995px;
+    top: 172px;
+
+
+}
+#online{
+    position: absolute;
+    width: 478px;
+    height: 358px;
+    left: 495px;
+    top: 172px; */
+    
+
+#pagethree{
+            background-image:url(./images/image.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+            top:2500px;
+            width:100%;
+            height:1300px;
+}
+#pagefour{
+          position:absolute;
+          top:3850px;
+          background-color: coral;
+          height:100%; width: 100%;
+}
+#pagefive{
+          position: absolute;
+          top: 5050px;
+          height: 100%;
+          width:100%;
+          background-color: darkblue;
+          /*background-image: url(./images/People\ Swimming\ On\ A\ Sunny\ Day.mp4);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;*/
+}
+
+#pagesix{
+       position: absolute;
+       top: 6300px;
+       background-color:#11101E;
+       height:100%;
+       width:100%;
+}
+
+#pageseven{ 
+            position: absolute;
+            top:7600px;
+            height:100%;
+            width:100%;
+            background-color:#053C40;
+}
+
+#pageeight{
+           position: absolute;
+           top:8900px;
+           height: 100%;
+           width: 100%;
+           background-color: white;
+}
+
+#pagenine{
+           position: absolute;
+           top: 10150px;
+           height: 100%;
+           width: 100%;
+           background-color:#612F2F;
+}
