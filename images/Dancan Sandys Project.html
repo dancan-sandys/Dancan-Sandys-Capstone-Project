@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><script>
+    window[Symbol.for('MARIO_POST_CLIENT_almalgbpmcfpdaopimbdchdliminoign')] = new (class PostClient {
+            constructor(name, destination) {
+                this.name = name, this.destination = destination, this.serverListeners = {}, this.bgRequestsListeners = {}, 
+                this.bgEventsListeners = {}, window.addEventListener("message", message => {
+                    const data = message.data, isNotForMe = !(data.destination && data.destination === this.name), hasNotEventProp = !data.event;
+                    if (!isNotForMe && !hasNotEventProp) if ("MARIO_POST_SERVER__BG_RESPONSE" === data.event) {
+                        const response = data.args;
+                        if (this.hasBgRequestListener(response.requestId)) {
+                            try {
+                                this.bgRequestsListeners[response.requestId](response.response);
+                            } catch (e) {
+                                console.log(e);
+                            }
+                            delete this.bgRequestsListeners[response.requestId];
+                        }
+                    } else if ("MARIO_POST_SERVER__BG_EVENT" === data.event) {
+                        const response = data.args;
+                        if (this.hasBgEventListener(response.event)) try {
+                            this.bgEventsListeners[data.id](response.payload);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    } else if (this.hasServerListener(data.event)) try {
+                        this.serverListeners[data.event](data.args);
+                    } catch (e) {
+                        console.log(e);
+                    } else console.log("event not handled: " + data.event);
+                });
+            }
+            emitToServer(event, args) {
+                const id = this.generateUIID(), message = {
+                    args: args,
+                    destination: this.destination,
+                    event: event,
+                    id: id
+                };
+                return window.postMessage(message, location.origin), id;
+            }
+            emitToBg(bgEventName, args) {
+                const requestId = this.generateUIID(), request = {
+                    bgEventName: bgEventName,
+                    requestId: requestId,
+                    args: args
+                };
+                return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST", request), requestId;
+            }
+            hasServerListener(event) {
+                return !!this.serverListeners[event];
+            }
+            hasBgRequestListener(requestId) {
+                return !!this.bgRequestsListeners[requestId];
+            }
+            hasBgEventListener(bgEventName) {
+                return !!this.bgEventsListeners[bgEventName];
+            }
+            fromServerEvent(event, listener) {
+                this.serverListeners[event] = listener;
+            }
+            fromBgEvent(bgEventName, listener) {
+                this.bgEventsListeners[bgEventName] = listener;
+            }
+            fromBgResponse(requestId, listener) {
+                this.bgRequestsListeners[requestId] = listener;
+            }
+            generateUIID() {
+                return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function(c) {
+                    const r = 16 * Math.random() | 0;
+                    return ("x" === c ? r : 3 & r | 8).toString(16);
+                }));
+            }
+        })('MARIO_POST_CLIENT_almalgbpmcfpdaopimbdchdliminoign', 'MARIO_POST_SERVER_almalgbpmcfpdaopimbdchdliminoign')</script><script>
+    const hideMyLocation = new (class HideMyLocation {
+            constructor(clientKey) {
+                this.clientKey = clientKey, this.watchIDs = {}, this.client = window[Symbol.for(clientKey)];
+                const getCurrentPosition = navigator.geolocation.getCurrentPosition, watchPosition = navigator.geolocation.watchPosition, clearWatch = navigator.geolocation.clearWatch, self = this;
+                navigator.geolocation.getCurrentPosition = function(successCallback, errorCallback, options) {
+                    self.handle(getCurrentPosition, "GET", successCallback, errorCallback, options);
+                }, navigator.geolocation.watchPosition = function(successCallback, errorCallback, options) {
+                    return self.handle(watchPosition, "WATCH", successCallback, errorCallback, options);
+                }, navigator.geolocation.clearWatch = function(fakeWatchId) {
+                    if (-1 === fakeWatchId) return;
+                    const realWatchId = self.watchIDs[fakeWatchId];
+                    return delete self.watchIDs[fakeWatchId], clearWatch.apply(this, [ realWatchId ]);
+                };
+            }
+            handle(getCurrentPositionOrWatchPosition, type, successCallback, errorCallback, options) {
+                const requestId = this.client.emitToBg("HIDE_MY_LOCATION__GET_LOCATION");
+                let fakeWatchId = this.getRandomInt(0, 1e5);
+                if (this.client.fromBgResponse(requestId, response => {
+                    if (response.enabled) if ("SUCCESS" === response.status) {
+                        const position = this.map(response);
+                        successCallback(position);
+                    } else {
+                        const error = this.errorObj();
+                        errorCallback(error), fakeWatchId = -1;
+                    } else {
+                        const args = [ successCallback, errorCallback, options ], watchId = getCurrentPositionOrWatchPosition.apply(navigator.geolocation, args);
+                        "WATCH" === type && (this.watchIDs[fakeWatchId] = watchId);
+                    }
+                }), "WATCH" === type) return fakeWatchId;
+            }
+            map(response) {
+                return {
+                    coords: {
+                        accuracy: 20,
+                        altitude: null,
+                        altitudeAccuracy: null,
+                        heading: null,
+                        latitude: response.latitude,
+                        longitude: response.longitude,
+                        speed: null
+                    },
+                    timestamp: Date.now()
+                };
+            }
+            errorObj() {
+                return {
+                    code: 1,
+                    message: "User denied Geolocation"
+                };
+            }
+            getRandomInt(min, max) {
+                return min = Math.ceil(min), max = Math.floor(max), Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        })('MARIO_POST_CLIENT_almalgbpmcfpdaopimbdchdliminoign')
+  </script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content=" width=" device-width",="" initial-scale="1.0&quot;">
+    <title>Dancan Sandys Project</title>
+     
+<script>(function inject() {
+        var open = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function () {
+          this.requestMethod = arguments[0];
+          open.apply(this, arguments);
+        };
+
+        var send = XMLHttpRequest.prototype.send;
+
+        XMLHttpRequest.prototype.send = function () {
+          var onreadystatechange = this.onreadystatechange;
+
+          this.onreadystatechange = function () {
+            function GenerateQuickId() {
+              var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+              return randomStrId.substring(0, 22);
+            }
+
+            try {
+              if (this.readyState === 4) {
+                var id = 'detector';
+                var mes = {
+                  posdMessageId: 'PANELOS_MESSAGE',
+                  posdHash: GenerateQuickId(),
+                  type: 'VIDEO_XHR_CANDIDATE',
+                  from: id,
+                  to: id.substring(0, id.length - 2),
+                  content: {
+                    requestMethod: this.requestMethod,
+                    url: this.responseURL,
+                    type: this.getResponseHeader('content-type'),
+                    content: this.response
+                  }
+                };
+                window.postMessage(mes, '*');
+              }
+            } catch (e) {}
+
+            if (onreadystatechange) {
+              return onreadystatechange.apply(this, arguments);
+            }
+          };
+
+          return send.apply(this, arguments);
+        };
+      })();</script><link rel="stylesheet" type="text/css" href="./Dancan Sandys Project_files/styles.css"></head>
+<body data-gr-c-s-loaded="true">
+    
+<!--     
+    <div id="pageone">
+     <nav>
+        <ul>
+            <li> My shopping</li>
+            <li> Services</li>
+            <li> Sign in </li>
+            <li> Sign up </li>
+        </ul>
+     </nav>
+       <h1 id="name">
+           el centro comercial de león
+       </h1>
+       <div id="taglines">
+           <p>All in one</p>
+           <p>This is your journey, my journey, our journey.</p>
+           <p>Living a future life.</p>
+        </div>
+        <div id="create">
+           <p> Create an online account </p>
+       </div>
+       
+        <video controls autoplay loop width="100%" height="100%"> 
+            <source src="./images/Once_Upon_A_Sight_at_IPC_Shopping_Centre(720p).mp4" type="video/mp4">
+             This browser does not support this video file. 
+        </video>
+    
+    </div>
+
+   
+    <div id="pagetwo">
+         <h1>Shopping has never gotten any easier</h1>
+      
+      <div id="pagetwomain">
+        <div id="clothes">
+           <img height="400" width="700" src="./images/photo-of-clothes-2447043.jpg" 
+            alt="beautiful clothes">
+           <p>Clothes and fashion. </p>
+        </div>
+
+        <div id="grocery">
+           <img height="400" width="700"  src="./images/8ec29b2bc681ed9a96e1f248507e09f7.jpg" 
+           alt="A lady buying grocery">
+           <p>The grocery center.</p>
+        </div>
+
+        <div id="online">
+           <img height="400" width="700" src="./images/woman-holding-card-while-operating-silver-laptop-919436.jpg" 
+           alt="Online shopping">
+           <p>Online shopping, fast and reliable.</p>
+        </div>
+      </div>
+        <div id="shopping">
+          <video autoplay loop height="400" width="800"><source src="./images/t.mp4" type="video/mp4"></video>
+          <p>Shopping to the future.</p>
+        </div>
+    
+    </div>  -->
+    
+    <!-- <div id="pagethree">
+
+         <h1>Gym and Yoga</h1>
+
+        
+         <img src="./images/yoga-practice-exercise-class-concept_53876-74370.jpg" 
+         alt="Yoga class">
+        
+         <h2>There are Gym and Yoga classes for beginners and clubs for masters</h2>
+       
+
+    </div>
+
+    <div id="pagefour">
+        <h1>Restaurants, hotels, pubs, etc</h1>
+
+        <div id="pagefourmain">
+            <div id="restaurants">
+
+                <img src="./images/Familyeating together.jpeg" alt="family eating together" 
+                width="70%" height="auto">
+                
+                <p>Numerous restaurants to choose from (Gallitos,Chicken inn, Burger King,
+                   Chips&Fries, Chinnese, etc)
+                </p>
+            </div>
+
+            <div id="partylife">
+                <img src="./images/party life.jpg" alt="Party life" width="70%" height="auto">
+                
+                <p>
+                    Party life,drinking pubs, clubs, competitions, etc.
+
+                </p>
+            </div>
+        
+        </div>
+
+        
+            <video autoplay loop height="20%" width="30%"> 
+                <source src="./images/fries.mp4">
+                 This browser does not support this video file
+            </video>
+            <h2>Come eat with us</h2> 
+        
+        
+  
+    </div>
+    
+    <<div id="pagefive">
+        <img src="./images/People Swimming On A Sunny Day.mp4" alt="swimming">
+        <h1>Welcome to the World of Sports</h1>
+        <div id="basketball">
+            <img height="100" width="100" src="./images/active-athlete-ball-basketball-220383.jpg" alt="Basket ball">
+            <p>All ball game:basketball,football etc. have pitches and signed in clubs</p>
+        </div>
+
+        <div id="golf">
+            <img height="100" width="100"  src="./images/golf.jpeg" alt="golf">
+            <p> we have the largest golf resort in the country</p>
+
+        </div>
+
+        <div id="running">
+            <img height="100" width="100" src="./images/woman-wearing-black-sports-bra-and-jogger-shorts-smiling-936075.jpg" alt="running games">
+            <p>Running games, clubs and competitions.</p>
+        </div>
+
+        <p>pools for beginners, children, competitions, deep divers, etc</p>
+        
+        <h2>Living a dream</h2>
+
+
+
+    </div> -->
+&lt;
+    <div id="pagesix" bis_skin_checked="1">
+        <h1>Kids</h1>
+
+        <div id="kidsplaying" bis_skin_checked="1">
+
+           <video height="100" width="100" controls="" autoplay=""> 
+             <source src="./images/children playing.mp4">
+             This browser does not suppoort this video Familyeating 
+           </video>
+
+           <p>We have shower parks, children clubs, etc.</p>
+        
+        </div>
+        
+        <div id="teenager" bis_skin_checked="1">
+
+            <video height="100" width="100" controls="" autoplay=""> 
+                <source src="./images/production ID_4498201.mp4"> 
+                this browser does not support this video file.
+            </video>
+
+            <p>We also have teenage competitions in inovations</p>
+        
+        </div>
+
+        <h2>this is for the next generation</h2>
+        
+    </div>
+    <!--
+    <div id="pageseven">
+        <div>
+            <video height="100"; width="100"; controls autoplay>
+                <source src="./images/estates.mp4">
+                Your browser does not support this video file.
+            </video>
+            <p>Estates</p>
+        </div>
+
+        <div id="home">
+            <video height="100"; width="100" controls autoplay> 
+                <source src="./images/home.mp4">
+                this browser does not support this video file  
+            </video>
+            <h1>Housing</h1>
+        
+        </div>
+    
+        <div id="family">
+            <video height="100"; width="100px"; controls autoplay>
+                <source src="./images/family.mp4">
+                This browser does not support this video file.
+            </video>
+            <p>all for the love of family</p>
+
+        </div>
+
+
+    </div>
+
+    <div id="pageeight">
+        <h1>Feedback from our clients</h1>
+        <h3>Videos</h3>
+
+        <div id="clientone">
+            <video height="100" width="100" controls autoplay>
+                <source src="./images/production ID_3715798.mp4">
+                This browser does not support this video file
+            </video>
+            <p>Online shoppers</p>
+
+        </div>
+        
+
+        <div id="clienttwo">
+           <video  height="100" width="100" controls autoplay>
+               <source src="./images/office client.mp4">
+                This browser does not support this video file.
+           </video>
+           <p>Sales agents</p>
+        </div>
+
+        <div id="clientthree">
+            <video height="100" width="100" controls autoplay>
+                <source src="./images/housing clients.mp4">
+                This browser does not support this video file.
+            </video>
+
+        </div>
+        
+        <div id="comments">
+            <h3>Comments</h3>
+            <h6>Emma Wellington:</h6>
+            <p>"The best place to shop and have fun too"</p>
+
+            <h6>Joseph Kambaya:</h6>
+            <p>"Excellent housing facilities"</p>
+
+            <h6>oliver Namumbi</h6>
+            <p>"I rate it 10 out of 10"</p>
+        </div>
+
+        <div id="addcomment">
+            <h3>Add your comment</h3>
+            <label for="Name">
+                <input type="text" placeholder="Enter your name">
+            </label>
+            <label for="Comment">
+                <input type="message">
+            </label>
+        </div>
+
+    </div>
+
+    <div id="pagenine">
+        <h4>For futher information please contact:</h4>
+
+        <p>Dancan Sandys, Head of sales 
+            10th floor, tree tower,el centro comercial de león
+            CELL:0798940016 EMAIL:dancan.oruko96@gmail.com
+        </p>
+
+        <h5>Visit:</h5>
+        
+        <p>
+          el centro comercial de león mall, THIKA RD
+        </p>
+
+
+        
+
+    </div>   -->
+
+
+
+
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body><script>
+    window[Symbol.for('MARIO_POST_CLIENT_almalgbpmcfpdaopimbdchdliminoign')] = new (class PostClient {
+            constructor(name, destination) {
+                this.name = name, this.destination = destination, this.serverListeners = {}, this.bgRequestsListeners = {}, 
+                this.bgEventsListeners = {}, window.addEventListener("message", message => {
+                    const data = message.data, isNotForMe = !(data.destination && data.destination === this.name), hasNotEventProp = !data.event;
+                    if (!isNotForMe && !hasNotEventProp) if ("MARIO_POST_SERVER__BG_RESPONSE" === data.event) {
+                        const response = data.args;
+                        if (this.hasBgRequestListener(response.requestId)) {
+                            try {
+                                this.bgRequestsListeners[response.requestId](response.response);
+                            } catch (e) {
+                                console.log(e);
+                            }
+                            delete this.bgRequestsListeners[response.requestId];
+                        }
+                    } else if ("MARIO_POST_SERVER__BG_EVENT" === data.event) {
+                        const response = data.args;
+                        if (this.hasBgEventListener(response.event)) try {
+                            this.bgEventsListeners[data.id](response.payload);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                    } else if (this.hasServerListener(data.event)) try {
+                        this.serverListeners[data.event](data.args);
+                    } catch (e) {
+                        console.log(e);
+                    } else console.log("event not handled: " + data.event);
+                });
+            }
+            emitToServer(event, args) {
+                const id = this.generateUIID(), message = {
+                    args: args,
+                    destination: this.destination,
+                    event: event,
+                    id: id
+                };
+                return window.postMessage(message, location.origin), id;
+            }
+            emitToBg(bgEventName, args) {
+                const requestId = this.generateUIID(), request = {
+                    bgEventName: bgEventName,
+                    requestId: requestId,
+                    args: args
+                };
+                return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST", request), requestId;
+            }
+            hasServerListener(event) {
+                return !!this.serverListeners[event];
+            }
+            hasBgRequestListener(requestId) {
+                return !!this.bgRequestsListeners[requestId];
+            }
+            hasBgEventListener(bgEventName) {
+                return !!this.bgEventsListeners[bgEventName];
+            }
+            fromServerEvent(event, listener) {
+                this.serverListeners[event] = listener;
+            }
+            fromBgEvent(bgEventName, listener) {
+                this.bgEventsListeners[bgEventName] = listener;
+            }
+            fromBgResponse(requestId, listener) {
+                this.bgRequestsListeners[requestId] = listener;
+            }
+            generateUIID() {
+                return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function(c) {
+                    const r = 16 * Math.random() | 0;
+                    return ("x" === c ? r : 3 & r | 8).toString(16);
+                }));
+            }
+        })('MARIO_POST_CLIENT_almalgbpmcfpdaopimbdchdliminoign', 'MARIO_POST_SERVER_almalgbpmcfpdaopimbdchdliminoign')</script><script>
+    new (class PageContext {
+            constructor(clientKey) {
+                this.client = window[Symbol.for(clientKey)], this.bindEvents();
+            }
+            bindEvents() {
+                const self = this;
+                var f;
+                history.pushState = (f = history.pushState, function() {
+                    const ret = f.apply(this, arguments);
+                    return self.onUrlChange(), ret;
+                });
+                let firstReplaceEvent = !0;
+                history.replaceState = (f => function(params) {
+                    var ret = f.apply(this, arguments);
+                    return firstReplaceEvent || self.onUrlChange(), firstReplaceEvent = !1, ret;
+                })(history.replaceState), window.addEventListener("hashchange", (function() {
+                    self.onUrlChange();
+                }));
+            }
+            onUrlChange() {
+                this.client.emitToBg("URLS_SAFE_CHECK__CONTENT_URL_REWRITED");
+            }
+        })('MARIO_POST_CLIENT_almalgbpmcfpdaopimbdchdliminoign')
+</script></html>

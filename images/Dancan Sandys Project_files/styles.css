@@ -1,0 +1,246 @@
+
+ body{ 
+    height: 100%;
+    width: 100%;    
+    background-color: #030D43; 
+ }
+#pageone{
+    position: absolute;
+    top: 0px;    
+    right: 0%;
+    bottom: 0px;
+    left: 0%;
+    height:100%;
+    width:100%;      
+    }
+nav>ul{ display:flex;
+      flex-direction: row;  
+      justify-content: space-around;
+      background-color:#1A1249;
+      list-style: none;
+      height: 150px;  
+      width: 90%;
+      align-self: center;
+      align-items: center;
+      position: fixed;
+      left:4%;
+    }
+nav>ul>li{ color:#043BFF;
+           font-family:roboto;
+           font-size:48px;
+           line-height:56px ;
+
+}
+#name{position: absolute;
+      top:10%;
+      left:16%;
+      color:#030D43;
+      font-size: 144px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-style: italic;
+     }
+#taglines{
+    position:absolute;
+    left:25%;
+    top:40%;    
+    align-items: center;
+    text-align: center;
+    color:white;
+    font-family: Redressed;
+    font-size: 64px;
+    line-height: 75px;
+    letter-spacing: 0.025em;
+}
+#create{
+       position: absolute;
+       bottom:10%;
+       right: 5%;
+       font-family: roboto;
+       font-size: 24px;
+       line-height: 28px;
+       display: flex;
+       align-items: center;
+       text-align: center;
+       color: #A1FE0A;
+       background-color:  #571818;
+       border-radius: 20px;
+       padding: 10px;
+       width: 300px;
+       align-items: center;
+       justify-content: center;
+       }
+a{text-decoration:none; }
+a.hover{ color:white;} 
+       
+
+#pagetwo{position: absolute;
+         top: 100%;
+         background-color: #02FFE1;
+         height: 100%;
+         width:100%;
+}
+
+#pagetwomain{
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;  
+              align-items: center;
+              position: relative;
+              top:1%;
+              font-size: 36px;
+              text-align: center;
+             
+
+}
+
+#shopping{
+           display: flex;
+           position:relative;
+           top:5%;
+           
+           font-size: 72px;
+           justify-content: space-evenly;
+           align-items: center;
+        
+
+           
+
+}
+h1{ 
+    text-align: center;
+    font-size: 96px;
+    font-style: italic; 
+    color:#223169;   
+}
+
+
+    
+
+#pagethree{
+            background-image:url(./images/image.webp);
+            background-repeat: no-repeat;
+            background-size:cover;
+            position: absolute;
+            top:200%;
+            width:100%;
+            height:1300px;
+}           
+#pagethree>img{ position: absolute;
+                right:0;
+                top: 35%;
+                height:40%;
+                width:35%;                        
+         }
+#pagethree>h2{
+              position:absolute;
+              top:46%;
+              left:16%;
+              font-size:72px;
+              right:40%;
+              text-align: center;
+              color: rgb(24, 3, 44);
+              font-family: Risque;
+                
+}         
+#pagefour{
+          position:absolute;
+          top:300%;
+         
+          height:100%; width: 100%;
+}
+#pagefourmain{
+            display: flex;
+            position:relative;
+            left:1%;
+            right: 0%;
+            justify-content:space-between;
+            text-align: center;
+            font-size: 36px;
+            padding: 0;
+            margin: 0;
+        
+
+}
+#restaurants>p{
+    position: absolute;
+    width: 411px;
+    height: 207px;
+    left: 0px;
+    top: 419px;
+}
+#restaurants>img{
+    position: absolute;
+    width: 485px;
+    height: 350px;
+    left: 0px;
+    top: 67px;
+}
+#partylife>img{
+    position: absolute;
+    width: 516px;
+    height: 337px;
+    left: 928px;
+    top: 80px;
+}
+#partylife>p{
+    position: absolute;
+    width: 446px;
+    height: 142px;
+    left: 1012px;
+    top: 449px;}
+#fries>video{
+    position: absolute;
+    width: 1458px;
+    height: 900px;
+    left: 0px;
+    top: 0px;
+  }
+  #fries>h2{
+             text-align: center;
+             font-size: 64px;
+  }
+
+
+#pagefive{
+          position: absolute;
+          top: 420%;
+          height: 100%;
+          width:100%;
+          
+}
+
+#pagesix{
+       position: absolute;
+       top: 6300px;
+       background-color:#11101E;
+       height:100%;
+       width:100%;
+}
+pagesixmain{
+            display: flex;
+            justify-content: space-around;
+}
+
+#pageseven{ 
+            position: absolute;
+            top:7600px;
+            height:100%;
+            width:100%;
+            background-color:#053C40;
+}
+
+#pageeight{
+           position: absolute;
+           top:8900px;
+           height: 100%;
+           width: 100%;
+           background-color: white;
+}
+
+#pagenine{
+           position: absolute;
+           top: 10150px;
+           height: 100%;
+           width: 100%;
+           background-color:#612F2F;
+}
