@@ -3,7 +3,8 @@
  body{ 
     height: 100%;
     width: 100%;    
-    background-color: #030D43; 
+    background-color: white; 
+    overflow-x: hidden;
  }
     #pageone{
         position: absolute;
@@ -23,8 +24,8 @@
             width: 90%;
             align-self: center;
             align-items: center;
-            position: fixed;
-            left:4%;
+            position: absolute;
+            left:3%;
             }
         nav>ul>li{ color:#043BFF;
                 font-family:roboto;
@@ -62,8 +63,8 @@
             display: flex;
             align-items: center;
             text-align: center;
-            color: #A1FE0A;
-            background-color:  #571818;
+            color: #1A1249;
+           
             border-radius: 20px;
             padding: 0p;
             width: 200px;
@@ -153,7 +154,7 @@
                 position:absolute;
                 top:310%;
                 height:100%; width: 100%;
-                background-color:yellow;
+               
                 }
         
 
@@ -204,9 +205,7 @@
             top: 420%;
             height: 100%;
             width:100%;
-            background-color: lawngreen;
-            
-        
+           
             }
             #basketball{position: absolute;
                         left: 0;
@@ -260,7 +259,7 @@
     #pagesix{
         position: absolute;
         top: 530%;
-        background-color:#11101E;
+        background-color:white
         height:100%;
         width:100%;
     }
@@ -282,7 +281,7 @@
                 top:630%;
                 height:100%;
                 width:100%;
-                background-color:#053C40;
+                background-color: #02FFE1;
             
           }
         #pagesevenmain{ 
@@ -301,6 +300,8 @@
               margin: 0;
               width: 40%;
               height: 100%;
+              justify-content: center;
+              align-items: center;
             }
         #family{
                 padding: 0;
@@ -330,10 +331,18 @@
         #pageeight>h3{font-size: 36px;
                     position: relative;
                     left:45%;
-                    bottom: 5%;
+                    bottom: 15%;
                     color:#223169;  
                     
         }
+        #pageeight>h1{
+                      position: relative;
+                      bottom: 15%;
+                      }
+        #clientvideos{position: relative;
+                      bottom: 15%;
+                 
+                      }
         #clientone{width: 33%; }
         #clienttwo{width: 33%; }
         #clientthree{width: 33%;}
@@ -344,32 +353,35 @@
                     
                     justify-content: space-evenly;
                     position: relative;
-                    bottom:11%;
+                    bottom:27%;
                     padding: 0;
                     margin: 0;  
                 }
-        #pageeight>h5{font-size: 24px;
+        #pageeight>h5{font-size: 28px;
                     position: relative;
-                    left: 45%;
-                    bottom: 6%;
+                    left: 48%;
+                    bottom: 21%;
                     color:#223169;  }
 
         #comments>h6{font-size:24px; 
                     padding: 0;
                     margin: 0;  }
-        #comments>h6>span{font-size: 16px;}
+        #comments>h6>div{font-size: 16px;
+                         font-weight: lighter; 
+                         font-style: italic;   
+                           }
 
         form{ position:absolute;
-                bottom:0px;
+                bottom:10%;
                 left:0px;
                 right: 0px;
                 padding: 0;
                 margin: 0;              
         }
-        form>h5{font-size:24px;
+        form>h5{font-size:26px;
                 position: absolute;
-                left: 40%;
-                bottom: 38%;
+                left: 46%;
+                bottom: 50%;
                 color:#223169;          
         }
         #addcomment{
@@ -384,18 +396,23 @@
 
 
         textarea{ width:40%;
-                  height:40px; 
-                 font-size: 36px;
+                  height:70px; 
+                  font-size: 16px;
                 }
-        input{width:20%;  font-size: 24px; }
+        input{width:20%;  font-size: 20px; }
 
-        button{width: 20%; font-size: 24px; }
+        button{
+                width: 20%; 
+                font-size: 24px;
+                position: absolute;
+                top: 100px; 
+               }
     #pagenine{
             position: absolute;
             top: 850%;
             height: 100%;
             width: 100%;
-            background-color:#612F2F;
+            background-color:whitesmoke;
     }
 
         #pagenine>h4{
