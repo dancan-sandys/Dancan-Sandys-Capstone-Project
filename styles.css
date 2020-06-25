@@ -1,6 +1,11 @@
 
-
-#pageone{position: absolute;
+ body{ 
+    height: 100%;
+    width: 100%;    
+    background-color: #030D43; 
+ }
+#pageone{
+    position: absolute;
     top: 0px;    
     right: 0%;
     bottom: 0px;
@@ -14,9 +19,11 @@ nav>ul{ display:flex;
       background-color:#1A1249;
       list-style: none;
       height: 150px;  
-      width: 100%;
+      width: 90%;
+      align-self: center;
       align-items: center;
       position: fixed;
+      left:4%;
     }
 nav>ul>li{ color:#043BFF;
            font-family:roboto;
@@ -25,18 +32,20 @@ nav>ul>li{ color:#043BFF;
 
 }
 #name{position: absolute;
-      top:20%;
+      top:10%;
+      left:16%;
       color:#030D43;
       font-size: 144px;
-    
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-style: italic;
      }
 #taglines{
     position:absolute;
-    left:30%;
-    top:50%;    
+    left:25%;
+    top:40%;    
     align-items: center;
     text-align: center;
-    color:#02FFE1;
+    color:white;
     font-family: Redressed;
     font-size: 64px;
     line-height: 75px;
@@ -44,7 +53,7 @@ nav>ul>li{ color:#043BFF;
 }
 #create{
        position: absolute;
-       bottom:0;
+       bottom:10%;
        right: 5%;
        font-family: roboto;
        font-size: 24px;
@@ -56,14 +65,16 @@ nav>ul>li{ color:#043BFF;
        background-color:  #571818;
        border-radius: 20px;
        padding: 10px;
-
+       width: 300px;
+       align-items: center;
+       justify-content: center;
+       }
+a{text-decoration:none; }
+a.hover{ color:white;} 
        
 
-       
-
-}
 #pagetwo{position: absolute;
-         top: 1250px;
+         top: 100%;
          background-color: #02FFE1;
          height: 100%;
          width:100%;
@@ -72,64 +83,177 @@ nav>ul>li{ color:#043BFF;
 #pagetwomain{
               display: flex;
               flex-direction: row;
-              justify-content: space-around;   
+              justify-content: space-around;  
               align-items: center;
+              position: relative;
+              top:1%;
+              font-size: 36px;
+              text-align: center;
+             
 
 }
-/*
-#clothes{
-    position: absolute;
-    width: 463px;
-    height: 349px;
-    left: -4px;
-    top: 172px;
 
-    
-          
-}
+#shopping{
+           display: flex;
+           position:relative;
+           top:5%;
+           
+           font-size: 72px;
+           justify-content: space-evenly;
+           align-items: center;
+        
 
-#grocery{
-    position: absolute;
-    width: 452px;
-    height: 358px;
-    left: 995px;
-    top: 172px;
-
+           
 
 }
-#online{
-    position: absolute;
-    width: 478px;
-    height: 358px;
-    left: 495px;
-    top: 172px; */
+h1{ 
+    text-align: center;
+    font-size: 96px;
+    font-style: italic; 
+    color:#223169;   
+}
+h2{
+    text-align: center;
+    font-size: 48px;}
+
+
+
     
 
 #pagethree{
             background-image:url(./images/image.webp);
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size:cover;
             position: absolute;
-            top:2500px;
+            top:200%;
             width:100%;
             height:1300px;
+}           
+#pagethree>img{ position: absolute;
+                right:0;
+                top: 35%;
+                height:40%;
+                width:35%;                        
+         }
+#pagethree>h2{
+              position:absolute;
+              top:46%;
+              left:16%;
+              font-size:72px;
+              right:40%;
+              text-align: center;
+              color: rgb(24, 3, 44);
+              font-family: Risque;
+                
 }
+
+
 #pagefour{
           position:absolute;
-          top:3850px;
-          background-color: coral;
+          top:300%;
           height:100%; width: 100%;
-}
+          background-color:yellow;
+        }
+ 
+
+
+
+#pagefour>h1{position: absolute;
+             left: 30%;
+             color: cornsilk;
+              
+            }
+
+#restaurants{position: absolute;
+             left: 0%;
+             top: 20%;
+             width: 1080px;
+             font-size: 48px;
+             text-align: center;
+             color: cornsilk;
+              }
+#partylife{ position: absolute; 
+            right: 0%;
+            top: 20%;
+            width: 1080px;
+            font-size: 48px;
+            text-align: center;
+            color: cornsilk;
+              }
+            }
+#fries{position: absolute;
+        top: 0;
+        bottom: 0; 
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+#pagefour>h2{
+             color: cornsilk;  
+             position:absolute;
+             left: 40%;
+             top: 97%; 
+             font-size: 72px;       
+       }
+
+
 #pagefive{
           position: absolute;
-          top: 5050px;
+          top: 420%;
           height: 100%;
           width:100%;
-          background-color: darkblue;
-          /*background-image: url(./images/People\ Swimming\ On\ A\ Sunny\ Day.mp4);
-          background-repeat: no-repeat;
-          background-size: 100% 100%;*/
+          
+       
 }
+#basketball{position: absolute;
+            left: 8%;
+            top: 18%;
+            font-size: 36px;
+            text-align: center;
+            width: 500px;
+
+            }
+#golf{position: absolute;
+     right: 35%;
+     top: 25%;
+     font-size: 36px;
+     text-align: center;
+     width: 680px;
+     }
+#running{position: absolute;
+         right: 12%;
+         top: 18%;
+         font-size: 36px;
+         text-align: center;
+         width: 500px;
+        }
+ #pool{position: absolute;
+     left: 0px;
+
+     top: 0px;
+     bottom:0px;
+     width: 100%;
+     height: 100%;
+     padding: 0;
+     margin: 0;
+        } 
+#pagefive>h1{position: absolute;
+             left: 26%;
+             top: 4%;
+             }
+#pagefive>h2{position: absolute;
+             top: 84%;
+             left:40%;
+             font-size: 96px;
+             color:#223169;   
+             }
+
+#pagefive>p{position: absolute;
+            left: 20%;
+            bottom: 5%;
+            font-size: 62px;
+            }
 
 #pagesix{
        position: absolute;
@@ -138,6 +262,17 @@ nav>ul>li{ color:#043BFF;
        height:100%;
        width:100%;
 }
+#pagesixmain{
+            display: flex;
+            justify-content: space-around;
+            font-size: 48px;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+}
+#pagesix>h2{ position: absolute;
+          left: 35%; bottom:0;
+         font-size: 64px; }
 
 #pageseven{ 
             position: absolute;
@@ -145,7 +280,26 @@ nav>ul>li{ color:#043BFF;
             height:100%;
             width:100%;
             background-color:#053C40;
+           
 }
+#pagesevenmain{ 
+              display: flex;
+              width:100%;
+              justify-content:center;
+              align-items: center;
+              font-size: 72px;
+              text-align: center;
+               }
+#estates{padding: 0;
+         margin: 0;
+         }
+#pageseven>h1{position: absolute;
+              
+              left:45%; 
+              color: #041235         
+}
+
+
 
 #pageeight{
            position: absolute;
@@ -154,7 +308,71 @@ nav>ul>li{ color:#043BFF;
            width: 100%;
            background-color: white;
 }
+#clientvideos{display: flex;
+             justify-content: space-around; 
+             text-align: center;
+             font-size: 36px;    
+  }
+#pageeight>h3{font-size: 48px;
+              position: relative;
+              left:45%;
+              color:#223169;  
+            
+  }
+  #comments{padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            height:100px;
+            justify-content: space-evenly;
+            position: relative;
+            bottom:11%;
+            padding: 0;
+            margin: 0;  
+         }
+  #pageeight>h5{font-size: 48px;
+              position: relative;
+              left: 45%;
+              bottom: 6%;
+              color:#223169;  }
 
+  #comments>h6{font-size:36px; 
+               padding: 0;
+               margin: 0;  }
+  #comments>h6>span{font-size: 24px;}
+
+  form{ position:absolute;
+        bottom:5%;
+        left: 30%;
+        padding: 0;
+        margin: 0;              
+}
+form>h5{font-size:42px;
+        position: absolute;
+        left: 20%;
+        bottom: 38%;
+        color:#223169;          
+}
+#addcomment{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 36px;
+            
+            
+}
+
+
+textarea{ width:800px; 
+          height: 100px; 
+          font-size: 36px; 
+          margin: 10px; 
+          
+}
+input{width: 350px; height: 60px; font-size: 36px; margin: 10px; }
+
+button{width: 150px; height: 60px;margin: 10px; font-size: 36px; }
 #pagenine{
            position: absolute;
            top: 10150px;
@@ -162,3 +380,13 @@ nav>ul>li{ color:#043BFF;
            width: 100%;
            background-color:#612F2F;
 }
+
+#pagenine>h4{
+             font-size: 72px;
+             text-align: center;
+}
+#pagenine>p{ text-align:center; 
+             font-size: 48px;
+             position: relative;
+             bottom: 5%;   }
+#pagenine>h5{ text-align: center; font-size: 64px;}
